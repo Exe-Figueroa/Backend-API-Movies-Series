@@ -1,0 +1,23 @@
+{
+  "name": "03-backend-api-movies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Exe-Figueroa/Backend-API-Movies-Series.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Exe-Figueroa/Backend-API-Movies-Series/issues"
+  },
+  "homepage": "https://github.com/Exe-Figueroa/Backend-API-Movies-Series#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
