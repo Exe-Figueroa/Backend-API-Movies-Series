@@ -6,10 +6,9 @@ const app = express();
 
 app.use(express.json());
 
-// app.get('/', (req, res)=>{
-//   const all = pelis.concat(series);
-//   res.json(all);
-// });
+app.get('/', (req, res)=>{
+  res.send('Hello world');
+});
 
 app.get('/movies', async (req, res)=>{
   try {
@@ -24,13 +23,12 @@ app.get('/movies', async (req, res)=>{
 app.get('/series', async (request, res)=>{
   try {
     const results = await queryDatabase('SELECT * FROM series');
-    res.json(results);
+    res.json(results);//Se le envía al cliente una respuesta
   } catch (error) {
     console.error('ERROR', error);
     res.status(500).json({error: 'Internal Server Error'});
   };
 });
-
 
 function queryDatabase(query) {
   return new Promise((resolve, reject) => {
