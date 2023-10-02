@@ -28,7 +28,7 @@ router.get('/:id', async (req, res) => {
     console.error('ERROR', error);
     res.status(500).json({ error: 'Internal Server Error' });
   };
-})
+});
 
 router.post('/', postErrorHandler, async (req, res) => {
   try {
@@ -66,6 +66,6 @@ router.delete('/:id', async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: 'Internal Server Error' });
   }
-})
+});
 
 module.exports = router;

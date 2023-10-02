@@ -12,11 +12,6 @@ app.get('/', (req, res)=>{
 });
 
 routerApi(app);
-//Middleware de verificación de errores:
-// app.use((err, req, res, next) => {
-//   console.error(err.stack);
-//   res.status(500).json({ error: 'Internal Server Error' });
-// });
 
 app.listen(3000, ()=>{
   console.log('Se está corriendo en el puerto 3000');
