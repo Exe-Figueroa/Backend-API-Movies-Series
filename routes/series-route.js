@@ -31,9 +31,9 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', postErrorHandler, async (req, res) => {
   try {
-    const { title, description, img, releaseYear } = req.body;
-    const postSerieSQL = 'INSERT INTO series (title, description, img, release_year) VALUES ($1, $2, $3, $4)';
-    const values = [title, description, img, releaseYear];
+    const { title, description, img, releaseYear, category } = req.body;
+    const postSerieSQL = 'INSERT INTO series (title, description, img, release_year, category) VALUES ($1, $2, $3, $4, $5)';
+    const values = [title, description, img, releaseYear, category];
     const results = await queryDatabase(postSerieSQL, values);
     res.json(results);
   } catch (error) {
@@ -45,9 +45,9 @@ router.post('/', postErrorHandler, async (req, res) => {
 router.patch('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, img, releaseYear } = req.body;
-    const updateSerieSQL = "UPDATE series SET title = COALESCE($1, title), description = COALESCE($2, description), img = COALESCE($3, img), release_year = COALESCE($4, release_year) WHERE id = $5";
-    const values = [title, description, img, releaseYear, id];
+    const { title, description, img, releaseYear, category } = req.body;
+    const updateSerieSQL = "UPDATE series SET title = COALESCE($1, title), description = COALESCE($2, description), img = COALESCE($3, img), release_year = COALESCE($4, release_year), category = COALESCE($5, category) WHERE id = $6";
+    const values = [title, description, img, releaseYear, category, id];
     const results = await queryDatabase(updateSerieSQL, values);
     res.status(200).json({ message: 'Sent Successfully', results });
   } catch (error) {
