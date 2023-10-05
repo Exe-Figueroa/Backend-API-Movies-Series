@@ -47,9 +47,9 @@ router.post('/', postErrorHandler, async (req, res) => {
 router.patch('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, img, releaseYear, category } = req.body;
-    const updateMovieSQL = "UPDATE movies SET title = COALESCE($1, title), description = COALESCE($2, description), img = COALESCE($3, img), release_year = COALESCE($4, release_year) category = COALESCE($5, category) WHERE id = $6";
-    const values = [title, description, img, releaseYear, category, id];
+    const { title, description, img, releaseYear } = req.body;
+    const updateMovieSQL = "UPDATE movies SET title = COALESCE($1, title), description = COALESCE($2, description), img = COALESCE($3, img), release_year = COALESCE($4, release_year) WHERE id = $5";
+    const values = [title, description, img, releaseYear, id];
     const results = await queryDatabase(updateMovieSQL, values);
     res.status(200).json({ message: 'Sent Successfully', results });
   } catch (error) {
