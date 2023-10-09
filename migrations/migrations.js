@@ -1,5 +1,29 @@
-const queryDatabase = require('../DB/db.config.js');
-const moviesTableQuery = 'CREATE TABLE movies (id serial PRIMARY KEY, title varchar(255), description text,release_year int, img varchar(255), category varchar)';
-const seriesTableQuery = 'CREATE TABLE series (id serial PRIMARY KEY, title varchar(255), description text,release_year int, img varchar(255), category varchar(20))';
-queryDatabase(moviesTableQuery);
-queryDatabase(seriesTableQuery);
+const config = require('../config/config.js');
+const path = require('path');
+const { Client } = require('pg');
+const fs = require('fs');
+
+const migrationFilePath = path.resolve(__dirname, '001-create-tables.sql');
+const migrationSQL = fs.readFileSync(migrationFilePath, 'utf8');
+
+const client = new Client({
+  user: config.username,
+  host: config.host,
+  database: config.database,
+  password: config.password,
+  port: config.dbPort,
+});
+
+async function runMigration() {
+  try {
+    await client.connect();
+    await client.query(migrationSQL);
+    console.log('Migración exitosa');
+  } catch (error) {
+    console.error('Error durante la migración:', error);
+  } finally {
+    await client.end();
+  }
+}
+
+runMigration();
