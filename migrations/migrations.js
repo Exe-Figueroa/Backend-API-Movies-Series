@@ -6,6 +6,7 @@ const fs = require('fs');
 const migrationFilePath = path.resolve(__dirname, '001-create-tables.sql');
 const migrationSQL = fs.readFileSync(migrationFilePath, 'utf8');
 
+
 const client = new Client({
   user: config.username,
   host: config.host,
