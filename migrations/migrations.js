@@ -1,11 +1,11 @@
-const { config } = require('../config/config.js');
+const config = require('../config/config.js');
+const path = require('path');
 const { Client } = require('pg');
 const fs = require('fs');
 
-// Lee el contenido del archivo de migración SQL
-const migrationSQL = fs.readFileSync('001-create-tables.sql', 'utf8');
+const migrationFilePath = path.resolve(__dirname, '001-create-tables.sql');
+const migrationSQL = fs.readFileSync(migrationFilePath, 'utf8');
 
-// Configuración de conexión a la base de datos
 const client = new Client({
   user: config.username,
   host: config.host,
@@ -14,7 +14,6 @@ const client = new Client({
   port: config.dbPort,
 });
 
-// Función para ejecutar la migración
 async function runMigration() {
   try {
     await client.connect();
@@ -27,5 +26,4 @@ async function runMigration() {
   }
 }
 
-// Ejecuta la migración
 runMigration();
