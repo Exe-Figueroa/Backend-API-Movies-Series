@@ -11,8 +11,8 @@ const connection = new Client({
   ssl: false
 });
 
-connection.connect();
 function queryDatabase(query, values) {
+  connection.connect();
   return new Promise((resolve, reject) => {
     connection.query(query, values, (err, result) => {
       if (err) {
