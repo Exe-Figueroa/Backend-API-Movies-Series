@@ -23,9 +23,7 @@ async function runMigration() {
     console.log('Migración exitosa');
   } catch (error) {
     console.error('Error durante la migración:', error);
-  } finally {
-    await client.end();
-  }
+  } 
 }
 
 runMigration();
