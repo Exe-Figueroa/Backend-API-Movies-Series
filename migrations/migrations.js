@@ -12,6 +12,7 @@ const client = new Client({
   database: config.database,
   password: config.password,
   port: config.dbPort,
+  ssl: false
 });
 
 async function runMigration() {

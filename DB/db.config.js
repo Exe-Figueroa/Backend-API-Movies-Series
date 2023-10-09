@@ -8,6 +8,7 @@ const connection = new Client({
   database: config.database,
   password: config.password,
   port: config.dbPort,
+  ssl: false
 });
 
 connection.connect();
